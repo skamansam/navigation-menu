@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>navigation-menu test</title>
+
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../navigation-menu.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <navigation-menu></navigation-menu>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('navigation-menu', function() {
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'navigation-menu');
+        });
+      });
+    </script>
+  </body>
+</html>
