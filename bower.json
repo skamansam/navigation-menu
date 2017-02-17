@@ -3,12 +3,22 @@
   "description": "handle and broadcast navigation",
   "main": "navigation-menu.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
+    "polymer": "Polymer/polymer#^1.8.0",
+    "app-route": "PolymerElements/app-route#^0.9.2",
+    "paper-menu": "PolymerElements/paper-menu#^0.9.2"
   },
   "devDependencies": {
+    "iron-pages": "^1.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5",
     "web-component-tester": "^4.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24"
+  },
+  "resolutions": {
+    "polymer": "^1.2.1",
+    "paper-styles": "^1.1.0",
+    "iron-flex-layout": "^1.0.0",
+    "iron-selector": "^1.0.0",
+    "iron-a11y-keys-behavior": "^1.1.5"
   }
 }
