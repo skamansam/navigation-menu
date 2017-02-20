@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
     <title>Navigation Menu Demo</title>
-    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="../../polymer/polymer.html">
 
-    <link rel="import" href="../bower_components/iron-demo-helpers/url-bar.html">
-    <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+    <link rel="import" href="../../iron-demo-helpers/url-bar.html">
+    <link rel="import" href="../../iron-pages/iron-pages.html">
 
-    <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../navigation-menu.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
@@ -40,6 +40,7 @@
       }
     </style>
     <template>
+      <demo-snippet>
       <app-location route="{{route}}" use-hash-as-path></app-location>
       <navigation-menu id="nav" route="{{route}}" current-request="{{currentRequest}}" current-request-data="{{requestData}}" current-subrequest="{{subpage}}">
       <div id="header">Header goes here!</div>
@@ -62,6 +63,7 @@
       <div>Request: <span>[[currentRequest.page]]</span></div>
       <div>RequestData: <span>[[requestData]]</span></div>
       <div>SubPage: <span>[[subpage]]</span></div>
+      </demo-snippet>
     </template>
     <script>
       window.addEventListener('WebComponentsReady', function() {

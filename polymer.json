@@ -1,0 +1,9 @@
+{
+  "entrypoint": "index.html",
+  "shell": "",
+  "fragments": [],
+  "sources": [],
+  "includeDependencies": [
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}
