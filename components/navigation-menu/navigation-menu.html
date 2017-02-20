@@ -1,0 +1,167 @@
+<!--<link rel="import" href="../polymer/polymer.html">-->
+<link rel="import" href="../paper-styles/typography.html">
+<link rel="import" href="../app-route/app-location.html">
+<link rel="import" href="../app-route/app-route.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<!--
+`navigation-menu`
+handle and broadcast navigation
+
+@demo demo/index.html
+-->
+
+<dom-module id="navigation-menu">
+  <style>
+    paper-menu {
+      --paper-menu-selected-item: {
+        color: var(--dark-accent-color);
+        background-color: var(--light-accent-color);
+      }
+
+      --paper-menu-focused-item-after: {
+        background: var(--primary-color);
+      }
+    }
+
+    paper-menu iron-icon {
+      color: var(--menu-link-color);
+      margin-right: 33px;
+      opacity: 1.00;
+    }
+
+    paper-menu .iron-selected iron-icon {
+      color: var(--primary-color);
+    }
+
+    paper-menu .iron-selected {
+      color: var(--primary-color);
+    }
+
+    paper-menu .menu-item {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+
+      text-decoration: none;
+      color: var(--menu-link-color);
+      font-family: 'Roboto', 'Noto', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      min-height: 48px;
+      padding: 0 16px;
+      cursor: pointer;
+    }
+
+
+  </style>
+  <template>
+    <!-- Routing -->
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+
+    <app-route route="{{route}}"
+              pattern="/:page"
+              data="{{currentRequest}}"
+              tail="{{currentRequestData}}"></app-route>
+
+    <!-- Drawer Content -->
+    <content select="#header"></content>
+    <paper-menu class="app-menu" attr-for-selected="data-route" selectable=".selectable" selected="{{currentRequest.page}}">
+      <content select="#before"></content>
+      <template is="dom-repeat" items="[[items]]" as="menu_item" >
+        <div class="menu-item selectable" data-route="[[menu_item.value]]" title="[[menu_item.tip]]">
+          <iron-icon icon="[[menu_item.icon]]"></iron-icon>
+          <span>[[menu_item.title]]</span>
+        </div>
+      </template>
+      <content select="#after"></content>
+    </paper-menu>
+    <content select="#footer"></content>
+  </template>
+<script>
+  Polymer({
+    is: 'navigation-menu',
+    properties: {
+      items: {
+        type: Array,
+        notify: false,
+        value: [
+          {
+            title: 'Home',
+            value: 'home',
+            tip: 'Go Home!',
+            default: true,
+            icon: 'home'
+          },
+          {
+            title: 'This is a long one',
+            value: 'long_one',
+            tip: 'WooHoo!',
+            default: true,
+            icon: 'star'
+          },
+          {
+            title: 'Favorite Items',
+            value: 'faves',
+            tip: 'Favorites',
+            default: true,
+            icon: 'dashboard'
+          }
+        ]
+      },
+      /** The route object. we will be manipulating this! */
+      route: {
+        type: Object,
+        notify: true,
+        //observer: '_routeChanged'
+      },
+      currentPage: {
+        type: Object,
+        notify: true,
+        //observer: '_currentPageChanged'
+      },
+      currentRequestData: {
+        type: Object,
+        notify: true,
+        //observer: '_currentRequestDataChanged'
+      },
+      currentRequest: {
+        type: Object,
+        notify: true,
+        //observer: '_currentRequestChanged'
+      }
+    },
+    _getDefaultItem: function(){
+      for(item in this.items){
+        if(item.default){
+          return item.value
+        }
+      }
+    },
+    /** Fired when the top-level route has changed.
+    */
+    routeChanged: function(newRoute){
+      console.log("route: ", newRoute)
+    },
+    _currentPageChanged: function(newCurrentPage){
+      console.log("current page: ", newCurrentPage)
+    },
+    currentRequestDataChanged: function(newCurrentRequestData){
+      console.log("current request data: ", newCurrentRequestData)
+    },
+    currentRequestChanged: function(newCurrentRequest){
+      console.log("current request: ", newCurrentRequest)
+    },
+    ready: function(){
+      if (!this.route.path) {
+        this.set('route.path', '/home');
+      }
+      this.currentRequest = this._getDefaultItem()
+    }
+  });
+</script>
+</dom-module>
+
